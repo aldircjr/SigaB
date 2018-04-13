@@ -1,0 +1,41 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>SigaB</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    </head>
+    <body>
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">SigaB</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{% url 'frequencia' %}">Frequencia</a></li>
+   
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      
+      {% if user.is_authenticated %}
+      <li>Olá, {{ user.username }} &nbsp; <a href={% url 'logout'%}><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+      {% else %}
+  	  <li><a href={% url 'login'%}><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+      {% endif %}
+
+    </ul>
+  </div>
+</nav>
+	
+	<div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% block content %}
+                    {% endblock %}
+            </div>
+        </div>
+
+   </body>
+</html>

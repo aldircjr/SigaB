@@ -1,0 +1,13 @@
+{% extends 'frequencia/base.html'%}
+
+{% block content%}
+
+	
+  {% for aluno in materia.alunos.all %}
+        <div class="alunos">
+       	<p>{{frequencia.id}}</p>
+        <p>{{aluno.nome}}</p>
+        </div>
+    {% endfor %}
+
+{%endblock%}
