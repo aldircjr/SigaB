@@ -3,7 +3,7 @@
 {% block content %}
     {% for materia in materias %}
         <div class="materia">
-            <h1><a href="{%url 'frequenciaDetails' pk=materia.pk %}"> {{ materia.nome}}</a></h1>
+            <h1><a href="{%url 'frequenciaNew' pk=materia.pk %}"> {{ materia.nome}}</a></h1>
         </div>
         <div class="professor">
                <p>Professor responsavel: <b>{{ materia.professor_responsavel}}</b></p>

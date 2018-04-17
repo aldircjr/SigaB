@@ -2,12 +2,18 @@
 
 {% block content%}
 
-	
-  {% for aluno in materia.alunos.all %}
+	<form method="POST">
+        {% csrf_token %}
+        
+        {% for aluno in materia.alunos.all %}
         <div class="alunos">
-       	<p>{{frequencia.id}}</p>
-        <p>{{aluno.nome}}</p>
+        <p>{{aluno.nome}} | {{ form.presente }}</p>
+
+        
         </div>
     {% endfor %}
+    
 
+        <button type="submit" class="save btn btn-default">Salvar</button>
+    </form>
 {%endblock%}

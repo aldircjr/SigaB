@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django import forms
 
 class Aluno(models.Model):
     id = models.AutoField(primary_key=True)
@@ -25,8 +26,11 @@ class Materia(models.Model):
     def __str__(self):
         return self.nome
 
+    
     def getId(self):
         return self.id
+
+
         
 
 class Frequencia(models.Model):
@@ -35,7 +39,7 @@ class Frequencia(models.Model):
     aluno = models.ForeignKey(Aluno)
     materia = models.ForeignKey(Materia)
     data = models.DateField()
-    presente = models.NullBooleanField()
+    presente = models.BooleanField(blank=False)
 
     def salvar(self):
         self.data = timezone.now()
