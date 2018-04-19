@@ -35,8 +35,8 @@ def frequenciaNew(request,pk):
             return redirect('mainPage')
     else:
 
-        form = MateriaForm()
-        alunos = materia.alunos
+        form = FrequenciaForm()
+        #alunos = materia.alunos
         #raise Exception(alunos)
 
     return render(request, 'frequencia/frequencia.html', {'materia' : materia, 'form' : form})
