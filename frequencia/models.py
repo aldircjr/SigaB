@@ -4,9 +4,9 @@ from django import forms
 
 class Aluno(models.Model):
     id = models.AutoField(primary_key=True)
-    matricula = models.CharField(max_length=15)
     nome = models.CharField(max_length=200)
     data_ingresso = models.DateField()
+
 
     def salvar(self):
         self.save()
@@ -23,23 +23,25 @@ class Materia(models.Model):
     professor_responsavel = models.CharField(max_length=20)
     alunos = models.ManyToManyField(Aluno)
 
+    def contaAlunos(self):
+        return self.alunos.count
+
     def __str__(self):
         return self.nome
 
+    def __index__(self):
+        return self.alunos.count
     
     def getId(self):
         return self.id
-
-
-        
 
 class Frequencia(models.Model):
 
     id = models.AutoField(primary_key=True)
     aluno = models.ForeignKey(Aluno)
-    materia = models.ForeignKey(Materia)
+    materia = models.ForeignKey(Materia, related_name='frequencia')
     data = models.DateField()
-    presente = models.BooleanField(blank=False)
+    presente = models.BooleanField(blank=False, default=False)
 
     def salvar(self):
         self.data = timezone.now()

@@ -7,13 +7,12 @@
         
         {% for aluno in materia.alunos.all %}
         <div class="alunos">
-        <p>{{aluno.nome}} | {{ form.presente }}</p>
+        <p>{{aluno.nome}} | {{ form }}</p>
 
         
         </div>
     {% endfor %}
     
-
         <button type="submit" class="save btn btn-default">Salvar</button>
     </form>
 {%endblock%}
