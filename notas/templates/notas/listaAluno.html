@@ -1,0 +1,14 @@
+{% extends 'frequencia/base.html'%}
+
+{% block content%}
+
+
+    {% for aluno in materia.alunos.all %}
+    <div class="alunos">
+    <h1><a href="{%url 'notas' pkMateria=materia.pk pkAluno=aluno.pk %}"> {{aluno.nome}}</a></h1> 
+    </div>
+    {% endfor %}
+    
+        
+    
+{%endblock%}
