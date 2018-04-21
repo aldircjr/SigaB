@@ -1,14 +1,19 @@
 {% extends 'frequencia/base.html'%}
+{% load crispy_forms_tags %}
 
 {% block content%}
 
 	<form method="POST">
         {% csrf_token %}
         
-        {{ aluno.nome }}
-        {{ materia.nome }}
-        {{ form }}
-    
-        <button type="submit" class="btn btn-primary">Bruno Viadao</button>
+        Aluno: {{ aluno.nome }}
+        <p class=''></p>
+        Materia: {{ materia.nome }}
+        
+        <p></p>
+        {{ form|crispy }}
+        
+        <p></p>
+        <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
 {%endblock%}

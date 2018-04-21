@@ -25,13 +25,12 @@ def notas(request, pkMateria, pkAluno):
     if request.method == "POST":
         form = NotaForm(request.POST)
         if form.is_valid():
-            # nota = form.save(commit=False)
-            # nota.valorNota = request.form
-            # nota.aluno = aluno
-            # nota.materia = materia
-            # nota.save()
-            
-            return redirect('#')
+            nota = form.save(commit=False)
+            nota.valorNota = form.cleaned_data['valorNota']
+            nota.aluno = aluno
+            nota.materia = materia
+            nota.save()
+            return render(request, 'frequencia/inicial.html')
     else:
         form = NotaForm()
                

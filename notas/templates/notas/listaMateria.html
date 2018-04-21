@@ -1,15 +1,15 @@
 {% extends 'frequencia/base.html' %}
 
+
 {% block content %}
     {% for materia in materias %}
-        <div class="materia">
-            <h1><a href="{%url 'listaAluno' pk=materia.pk %}"> {{ materia.nome}}</a></h1>
-        </div>
-        <div class="professor">
-               <p>Professor responsavel: <b>{{ materia.professor_responsavel}}</b></p>
-			   <br>
-               
-               
+        <div class="container">
+                <div class="jumbotron">
+                    <h3><a href="{%url 'frequenciaNew' pk=materia.pk %}"> {{ materia.nome}}</a></h3>
+                    <h4>Professor: <b>{{ materia.professor_responsavel}}</b></h4> 
+                   
+                </div>
+
             </div>
     {% endfor %}
 {% endblock %}

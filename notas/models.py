@@ -8,6 +8,9 @@ class Nota(models.Model):
     materia = models.ForeignKey(modelo.Materia)
     valorNota = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(10)])
 	
+    
+    def __str__(self):
+        return self.aluno.nome + ' - ' + self.materia.nome + ' - Nota: ' + str(self.valorNota)
         
 	
    

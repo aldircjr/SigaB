@@ -1,5 +1,7 @@
 {% extends "frequencia/base.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
     {% if form.errors %}
         <p>Your username and password didn't match. Please try again.</p>
@@ -11,17 +13,11 @@
     <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
         
+    {{ form|crispy }}
 
-  <div class="container">
-    <span class="label label-primary">{{ form.username.label_tag }}</span>
-    {{ form.username }}
-
-    <label for="psw"><b>{{ form.password.label_tag }}</b></label>
-    {{ form.password }}
-
-    <input type="submit" value="login" />
+    <input type="submit" class="btn btn-primary" value="Logar" />
     <input type="hidden" name="next" value="{{ next }}" />
-    </div>
+    
 </form>
     
     {% endblock %}
