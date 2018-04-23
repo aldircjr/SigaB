@@ -6,5 +6,5 @@ class NotaForm(forms.ModelForm):
 
     class Meta:
         model = Nota
-        fields = ('valorNota',)
+        fields = ('valorNota', 'observacao',)
 

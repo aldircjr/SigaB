@@ -27,6 +27,7 @@ def notas(request, pkMateria, pkAluno):
         if form.is_valid():
             nota = form.save(commit=False)
             nota.valorNota = form.cleaned_data['valorNota']
+            nota.observacao = form.cleaned_data['observacao']
             nota.aluno = aluno
             nota.materia = materia
             nota.save()

@@ -7,6 +7,7 @@ class Nota(models.Model):
     aluno = models.ForeignKey(modelo.Aluno)
     materia = models.ForeignKey(modelo.Materia)
     valorNota = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(10)])
+    observacao = models.TextField(max_length=100, default='')
 	
     
     def __str__(self):
