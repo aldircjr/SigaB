@@ -4,7 +4,7 @@ from django.http import Http404
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib.auth.decorators import login_required
 from .models import Materia, Frequencia
-from .forms import FrequenciaForm, MateriaForm
+from .forms import FrequenciaForm
 
 
 
@@ -30,13 +30,16 @@ def frequenciaNew(request,pk):
     if request.method == "POST":
         form = FrequenciaForm(request.POST)
         if form.is_valid():
-            materia = form.save(commit=False)
-        
+            frequencia = form.save(commit=False)
+            frequencia.materia = materia
+            frequencia.data = form.cleaned_data['data']
+            frequencia.salvar()
+            frequencia.presente = form.cleaned_data['presente']
+            form.save_m2m()
             return redirect('mainPage')
     else:
 
         form = FrequenciaForm()
-        #alunos = materia.alunos
-        #raise Exception(alunos)
-
+        #form = form.materia.alunos.filter(materia.id = pk)
+        form.presente = materia.alunos
     return render(request, 'frequencia/frequencia.html', {'materia' : materia, 'form' : form})

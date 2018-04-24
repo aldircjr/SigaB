@@ -38,14 +38,14 @@ class Materia(models.Model):
 class Frequencia(models.Model):
 
     id = models.AutoField(primary_key=True)
-    aluno = models.ForeignKey(Aluno)
     materia = models.ForeignKey(Materia, related_name='frequencia')
     data = models.DateField()
-    presente = models.BooleanField(blank=False, default=False)
+    presente = models.ManyToManyField(Aluno)
+    
 
     def salvar(self):
-        self.data = timezone.now()
+        #self.data = timezone.now()
         self.save()
         
     def __str__(self):
-        return self.data.strftime('%m/%d/%Y')
+        return self.data.strftime('%d/%m/%Y')
