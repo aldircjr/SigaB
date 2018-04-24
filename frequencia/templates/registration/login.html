@@ -4,11 +4,9 @@
 
 {% block content %}
     {% if form.errors %}
-        <p>Your username and password didn't match. Please try again.</p>
+        <p>Login ou Senha Inválidos</p>
     {% endif %}
-
-    
-    
+    <div class="container-fluid">
     
     <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
@@ -19,7 +17,7 @@
     <input type="hidden" name="next" value="{{ next }}" />
     
 </form>
-    
+    </div>
     {% endblock %}
     
     

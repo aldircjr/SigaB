@@ -4,6 +4,7 @@ from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from frequencia import models
 from .forms import NotaForm
+from .models import Nota
 
 
 
@@ -34,6 +35,7 @@ def notas(request, pkMateria, pkAluno):
             return render(request, 'frequencia/inicial.html')
     else:
         form = NotaForm()
-               
     
-    return render(request, 'notas/notas.html',{'aluno':aluno ,'materia':materia, 'form':form})
+    listaNotas = Nota.objects.filter(aluno=aluno, materia=materia)
+    
+    return render(request, 'notas/notas.html',{'aluno':aluno ,'materia':materia, 'form':form, 'listaNotas':listaNotas})

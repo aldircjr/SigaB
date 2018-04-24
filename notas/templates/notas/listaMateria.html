@@ -2,14 +2,12 @@
 
 
 {% block content %}
-    {% for materia in materias %}
-        <div class="container">
-                <div class="jumbotron">
-                    <h3><a href="{%url 'listaAluno' pk=materia.pk  %}"> {{ materia.nome}}</a></h3>
-                    <h4>Professor: <b>{{ materia.professor_responsavel}}</b></h4> 
-                   
-                </div>
-
-            </div>
+    <div class="list-group">
+        	<a href="#" class="list-group-item disabled ">Escolha a matéria dar Notas.</a>
+    			{% for materia in materias %}
+    
+    <a href="{%url 'listaAluno' pk=materia.pk %}" class="list-group-item">{{ materia.nome}}</a>
+            
     {% endfor %}
+</div>
 {% endblock %}
