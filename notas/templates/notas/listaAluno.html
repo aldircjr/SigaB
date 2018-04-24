@@ -2,13 +2,16 @@
 
 {% block content%}
 
-
+    <div class="list-group">
     {% for aluno in materia.alunos.all %}
-    <div class="alunos">
-    <h1><a href="{%url 'notas' pkMateria=materia.pk pkAluno=aluno.pk %}"> {{aluno.nome}}</a></h1> 
-    </div>
+    
+    
+    <a href="{%url 'notas' pkMateria=materia.pk pkAluno=aluno.pk %}" class="list-group-item">
+    {{aluno.nome}}</a>
+
+
     {% endfor %}
     
-        
+    </div>  
     
 {%endblock%}
