@@ -28,7 +28,7 @@ def frequenciaNew(request,pk):
 
     materia = get_object_or_404(Materia, pk=pk)
     if request.method == "POST":
-        form = FrequenciaForm(request.POST)
+        form = FrequenciaForm(request.POST, materia=materia)
         if form.is_valid():
             frequencia = form.save(commit=False)
             frequencia.materia = materia
@@ -39,7 +39,7 @@ def frequenciaNew(request,pk):
             return redirect('mainPage')
     else:
 
-        form = FrequenciaForm()
+        form = FrequenciaForm(materia=materia)
         #form = form.materia.alunos.filter(materia.id = pk)
-        form.presente = materia.alunos
+        #form.presente = materia.alunos
     return render(request, 'frequencia/frequencia.html', {'materia' : materia, 'form' : form})

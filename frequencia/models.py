@@ -21,7 +21,7 @@ class Materia(models.Model):
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=30)
     professor_responsavel = models.CharField(max_length=20)
-    alunos = models.ManyToManyField(Aluno)
+    alunos = models.ManyToManyField(Aluno, blank=True)
 
     def contaAlunos(self):
         return self.alunos.count
