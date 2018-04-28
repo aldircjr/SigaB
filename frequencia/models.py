@@ -3,6 +3,7 @@ from django.utils import timezone
 from django import forms
 from django.contrib.admin.widgets import AdminDateWidget
 from django.forms.fields import DateField
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Aluno(models.Model):
@@ -52,3 +53,18 @@ class Frequencia(models.Model):
         
     def __str__(self):
         return self.data.strftime('%d/%m/%Y')
+
+class Nota(models.Model):
+    id = models.AutoField(primary_key=True)
+    aluno = models.ForeignKey(Aluno)
+    materia = models.ForeignKey(Materia)
+    valorNota = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(10)])
+    observacao = models.TextField(max_length=100, default='')
+	
+    
+    def __str__(self):
+        return self.aluno.nome + ' - ' + self.materia.nome + ' - Nota: ' + str(self.valorNota)
+        
+	
+   
+        
