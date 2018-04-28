@@ -17,7 +17,20 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="{% url 'frequencia' %}">Frequencia</a></li>
 	  <li class="active"><a href="{% url 'listaMateria' %}">Notas</a></li>
-      <li class="active"><a href="{% url 'listaMateria' %}">Forum</a></li>
+      
+        
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Blog <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li class="active"><a href="{% url 'post_list' %}">Postagens</a></li>
+                <li class="active"><a href="{% url 'post_new' %}">Nova Postagem</a></li>
+                <li class="active"><a href="{% url 'post_draft_list' %}">Postagens Não Aprovadas</a></li>
+                
+            </ul>
+        </li>
+        
+        
+        
     </ul>
 	
 
