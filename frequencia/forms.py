@@ -3,6 +3,7 @@ from .models import Frequencia, Materia, Nota
 from django.forms import ModelForm
 
 
+
 class FrequenciaForm(forms.ModelForm):
 
     #presente = forms.ModelMultipleChoiceField(queryset=materia.alunos)
@@ -12,14 +13,18 @@ class FrequenciaForm(forms.ModelForm):
         super(FrequenciaForm, self).__init__(*args, **kwargs)
         self.fields["presente"].queryset = materia.alunos
         self.fields["data"].help_text = "dd/mm/aaaa"
-
+    
 
 
     class Meta:
         model = Frequencia
         fields = ('presente','data',)
         
-
+        #widgets ={
+        #    'presente': forms.CheckboxSelectMultiple(
+        #        attrs={'class': 'presente',
+        #        }),
+        #    }
         
         
         

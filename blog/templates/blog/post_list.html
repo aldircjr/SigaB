@@ -2,13 +2,21 @@
 
 {% block content %}
     {% for post in posts %}
-        <div class="post">
-            <div class="date">
-                {{ post.published_date }}
-            </div>
+        
+        
+        
+        <div class="well well-sm">
+            
             <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <a href="{% url 'post_detail' pk=post.pk %}">Veja os comentários! {{ post.approved_comments.count }}</a>
+            <div class="date">
+            <small>
+                {{ post.published_date }}
+            </small>
+            </div>
+            
             <p>{{ post.text|linebreaksbr }}</p>
+            
+            <a href="{% url 'post_detail' pk=post.pk %}">Veja os comentários! {{ post.approved_comments.count }}</a>
         </div>
     {% endfor %}
 {% endblock %}
