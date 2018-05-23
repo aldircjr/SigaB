@@ -7,28 +7,14 @@
         {% csrf_token %}
     <div class="well">Aluno: <b>{{ aluno.nome }}</b></div>
     <div class="well">Materia: <b>{{ materia.nome }}</b></div>
-</div>
+
 
         {{ form|crispy }}
         
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
 
-  {% if listaNotas %}
-     <a href="#demo" class="btn btn-info" data-toggle="collapse">Notas cadastradas</a>
- 		 <div id="demo" class="collapse">
-  	<ul class="list-group">
-
-  		{% for nota in listaNotas %}
-
-  		<li class="list-group-item">{{nota.valorNota}} - {{nota.observacao}}</li>
-    	
-    	{% endfor %}
-
-    </ul>
-
-  </div>  
-      {% endif %}
+  
 
    
 
