@@ -1,0 +1,18 @@
+{% extends 'frequencia/base.html'%}
+
+{% block content%}
+
+    <div class="list-group">
+    {% for materia in materias %} 
+    	<h2>{{materia.nome}}</h2>
+  		{% for aluno in materia.alunos.all %} 
+  			<p>{{aluno.nome}}</p>
+  	
+    	{% endfor %}
+		<br>
+
+    {% endfor %}
+    
+    </div>  
+    
+{%endblock%}

@@ -1,7 +1,7 @@
 {% load staticfiles %}
 <html>
     <head>
-        <title>SigaB</title>
+        <title>NAT</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -12,16 +12,29 @@
     <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">SigaB</a>
+      <a class="navbar-brand" href="/">NAT</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="{% url 'frequencia' %}">Frequencia</a></li>
-	  <li><a href="{% url 'listaMateria' %}">Notas</a></li>
-      {% if not user.is_authenticated %}
-      <li><a href="{% url 'post_list' %}">Postagens</a></li>
-      {% endif %}
-        
+      
+	  
+             
         {% if user.is_authenticated %}
+
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Controle <span class="caret"></span></a>
+
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="{% url 'listaMateria' %}">Notas</a></li>
+                <li><a href="{% url 'listaralunos' %}">Listar Alunos</a></li>
+                <li><a href="{% url 'novoaluno' %}">Cadastrar aluno</a></li>
+                <li><a href="{% url 'novamateria' %}">Cadastrar turma</a></li>
+                
+
+
+            </ul>
+        </li>
+
+
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Blog <span class="caret"></span></a>
 
@@ -32,6 +45,10 @@
                  
             </ul>
         </li>
+        {% endif %}
+
+        {% if not user.is_authenticated %}
+          <li><a href="{% url 'post_list' %}">Postagens</a></li>
         {% endif %}
         
         
@@ -68,7 +85,7 @@
         <a href="#">Nossos termos</a> | <a href="#">Entre em Contato</a>    
       </div>
       <div class="col-md-4">
-        <p class="muted pull-right">© 2018. Com menos bugs que o SigaA.</p>
+        <p class="muted pull-right">© 2018. Aldir e Bruno Ltda</p>
       </div>
   </div>
 </div>

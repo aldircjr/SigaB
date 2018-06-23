@@ -4,45 +4,46 @@ from django.http import Http404
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib.auth.decorators import login_required
 from .models import Materia, Frequencia, Nota, Aluno
-from .forms import FrequenciaForm, NotaForm
+from .forms import FrequenciaForm, NotaForm, MateriaForm, AlunoForm
+
 
 
 
 def mainPage(request):
     return render(request, 'frequencia/inicial.html')
 
-@login_required
-def frequencia(request):
-	materias = Materia.objects.order_by('nome')
-	return render(request, 'frequencia/listaMateria.html', {'materias' : materias})
+# @login_required
+# def frequencia(request):
+# 	materias = Materia.objects.order_by('nome')
+# 	return render(request, 'frequencia/listaMateria.html', {'materias' : materias})
 	
-@login_required
-def frequenciaDetails(request, pk):
-	materia = get_object_or_404(Materia, pk=pk)
-	frequencia = Frequencia()
-	frequencia.materia = materia
-	return render(request, 'frequencia/frequencia.html', {'materia' : materia, 'frequencia' : frequencia})
+# @login_required
+# def frequenciaDetails(request, pk):
+# 	materia = get_object_or_404(Materia, pk=pk)
+# 	frequencia = Frequencia()
+# 	frequencia.materia = materia
+# 	return render(request, 'frequencia/frequencia.html', {'materia' : materia, 'frequencia' : frequencia})
 	
-@login_required
-def frequenciaNew(request,pk):
+# @login_required
+# def frequenciaNew(request,pk):
 
-    materia = get_object_or_404(Materia, pk=pk)
-    if request.method == "POST":
-        form = FrequenciaForm(request.POST, materia=materia)
-        if form.is_valid():
-            frequencia = form.save(commit=False)
-            frequencia.materia = materia
-            frequencia.data = form.cleaned_data['data']
-            frequencia.salvar()
-            frequencia.presente = form.cleaned_data['presente']
-            form.save_m2m()
-            return redirect('mainPage')
-    else:
+#     materia = get_object_or_404(Materia, pk=pk)
+#     if request.method == "POST":
+#         form = FrequenciaForm(request.POST, materia=materia)
+#         if form.is_valid():
+#             frequencia = form.save(commit=False)
+#             frequencia.materia = materia
+#             frequencia.data = form.cleaned_data['data']
+#             frequencia.salvar()
+#             frequencia.presente = form.cleaned_data['presente']
+#             form.save_m2m()
+#             return redirect('mainPage')
+#     else:
 
-        form = FrequenciaForm(materia=materia)
-        #form = form.materia.alunos.filter(materia.id = pk)
-        #form.presente = materia.alunos
-    return render(request, 'frequencia/frequencia.html', {'materia' : materia, 'form' : form})
+#         form = FrequenciaForm(materia=materia)
+#         #form = form.materia.alunos.filter(materia.id = pk)
+#         #form.presente = materia.alunos
+#     return render(request, 'frequencia/frequencia.html', {'materia' : materia, 'form' : form})
     
     
 @login_required
@@ -55,6 +56,42 @@ def listaAluno(request, pk):
     materia = get_object_or_404(Materia, pk=pk)
     return render(request, 'notas/listaAluno.html', {'materia' : materia})
     
+@login_required
+def novoaluno(request):
+    if request.method == "POST":
+        form = AlunoForm(request.POST)
+        if form.is_valid():
+            aluno = form.save(commit=False)
+            aluno.nome = form.cleaned_data['nome']
+            aluno.cidade = form.cleaned_data['cidade']
+            aluno.data_ingresso = timezone.now()
+            aluno.save()
+            return redirect('mainPage')
+    else:
+        form = AlunoForm()
+    return render(request, 'frequencia/novoAluno.html', {'form' : form}) 
+
+@login_required
+def novamateria(request):
+    if request.method == "POST":
+        form = MateriaForm(request.POST)
+        if form.is_valid():
+            materia = form.save(commit=False)
+            materia.nome = form.cleaned_data['nome']
+            materia.professor_responsavel = form.cleaned_data['professor_responsavel']
+            materia.save()
+            form.save_m2m()
+            return redirect('mainPage')
+    else:
+
+        form = MateriaForm()
+    return render(request, 'frequencia/novaMateria.html', {'form' : form})
+
+@login_required
+def listaralunos(request):
+    materias =  Materia.objects.order_by('nome')
+    return render(request, 'frequencia/listaralunos.html',{'materias' : materias})
+
 @login_required
 def notas(request, pkMateria, pkAluno):
     materia = get_object_or_404(Materia, pk=pkMateria)

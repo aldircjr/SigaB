@@ -9,6 +9,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class Aluno(models.Model):
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=200)
+    cidade = models.CharField(max_length=200)
     data_ingresso = models.DateField()
 
 
