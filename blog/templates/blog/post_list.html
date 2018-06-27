@@ -4,19 +4,25 @@
     {% for post in posts %}
         
         
-        
-        <div class="well well-sm">
-            
-            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <div class="date">
-            <small>
-                {{ post.published_date }}
-            </small>
-            </div>
-            
-            <p>{{ post.text|linebreaksbr }}</p>
-            
-            <a href="{% url 'post_detail' pk=post.pk %}">Veja os comentários! {{ post.approved_comments.count }}</a>
-        </div>
+                <div class="w3-card-4">
+
+                    <header class="w3-container w3-light-grey">
+                    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                    </header>
+
+                    <div class="w3-container">
+                
+                        {{ post.published_date }}
+                
+                        <hr>
+                        <p>{{ post.text|linebreaksbr }}</p>
+                    </div>
+
+                <button class="w3-button w3-block w3-dark-grey"><a href="{% url 'post_detail' pk=post.pk %}">Veja os comentários! {{ post.approved_comments.count }}</a></button>
+
+                </div>
+                <br>
+
+
     {% endfor %}
 {% endblock %}

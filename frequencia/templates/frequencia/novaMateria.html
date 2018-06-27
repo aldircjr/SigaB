@@ -1,5 +1,6 @@
 {% extends "frequencia/base.html" %}
 
+
 {% block content %}
     {% if form.errors %}
         <p>Your username and password didn't match. Please try again.</p>
@@ -10,7 +11,7 @@
         <table>
         <tr>
             <td>{{ form.nome.label_tag }}</td>
-            <td>{{ form.nome }}</td>
+            <td>{{ form.nome}}</td>
         </tr>
         <tr>
             <td>{{ form.professor_responsavel.label_tag }}</td>
