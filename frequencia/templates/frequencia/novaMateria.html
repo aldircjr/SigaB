@@ -8,22 +8,18 @@
 
     <form method="post" action="{% url 'novamateria' %}">
     {% csrf_token %}
-        <table>
-        <tr>
-            <td>{{ form.nome.label_tag }}</td>
-            <td>{{ form.nome}}</td>
-        </tr>
-        <tr>
-            <td>{{ form.professor_responsavel.label_tag }}</td>
-            <td>{{ form.professor_responsavel }}</td>
-        </tr>
-        <tr>
-            <td>{{ form.alunos.label_tag }}</td>
-            <td>{{ form.alunos }}</td>
-        </tr>
-        </table>
-
-        <input type="submit" value="Cadastrar" />
+        
+            {{ form.nome.label_tag }}
+            {{ form.nome}}
+        <br>
+            {{ form.professor_responsavel.label_tag }}
+            {{ form.professor_responsavel }}
+       <br>
+            {{ form.alunos.label_tag }}
+            {{ form.alunos }}
+        <br>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+       
         <input type="hidden" name="next" value="{{ next }}" />
     </form>
 {% endblock %}

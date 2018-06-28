@@ -1,7 +1,9 @@
 {% extends 'frequencia/base.html' %}
 
 {% block content %}
-    {% for post in posts %}
+    
+        
+        {% for post in posts %}
         
         
                 <div class="w3-card-4">
@@ -11,7 +13,7 @@
                     </header>
 
                     <div class="w3-container">
-                
+                        <br>
                         {{ post.published_date }}
                 
                         <hr>
@@ -24,5 +26,9 @@
                 <br>
 
 
-    {% endfor %}
+        {% endfor %}
+
+
+    
+    
 {% endblock %}

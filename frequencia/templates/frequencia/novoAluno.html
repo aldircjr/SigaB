@@ -9,18 +9,24 @@
 
     <form method="post" action="{% url 'novoaluno' %}">
     {% csrf_token %}
-        <table>
-        <tr>
-            <td>{{ form.nome.label_tag }}</td>
-            <td>{{ form.nome }}</td>
-        </tr>
-        <tr>
-            <td>{{ form.cidade.label_tag }}</td>
-            <td>{{ form.cidade }}</td>
-        </tr>
-        </table>
-
-        <input type="submit" value="Cadastrar" />
+        <div class="form-group">
+        	{{ form.nome.label_tag }}
+        	<br>
+        	{{ form.nome }}
+        	
+            
+           
+        <br>
+        
+            {{ form.cidade.label_tag }}
+            <br>
+        	{{ form.cidade }}
+        	
+            
+		</div>
+        <br>        
+		<button type="submit" class="btn btn-primary">Cadastrar</button>
+        
         <input type="hidden" name="next" value="{{ next }}" />
     </form>
 {% endblock %}

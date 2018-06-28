@@ -41,6 +41,12 @@ class NotaForm(forms.ModelForm):
 
 class MateriaForm(forms.ModelForm):
 
+    def __init__(self, *args, **kwargs):
+        super(MateriaForm, self).__init__(*args, **kwargs)
+        self.fields['nome'].widget.attrs['class'] = 'form-control'
+        self.fields['professor_responsavel'].widget.attrs['class'] = 'form-control'
+        self.fields['alunos'].widget.attrs['class'] = 'form-control'
+
     class Meta:
         model = Materia
         fields = ('nome', 'professor_responsavel', 'alunos')
@@ -49,6 +55,15 @@ class MateriaForm(forms.ModelForm):
 
 class AlunoForm(forms.ModelForm):
 
+
+
+    def __init__(self, *args, **kwargs):
+        super(AlunoForm, self).__init__(*args, **kwargs)
+        self.fields['nome'].widget.attrs['class'] = 'form-control'
+        self.fields['cidade'].widget.attrs['class'] = 'form-control'
+
     class Meta:
         model = Aluno
+
+                
         fields = ('nome', 'cidade')

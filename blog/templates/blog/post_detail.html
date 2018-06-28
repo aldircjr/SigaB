@@ -8,40 +8,68 @@
         		{{ post.published_date }}
     		</div>
 		{% else %}
-    		<a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publicar</a>
+    		<a class="btn btn-primary" href="{% url 'post_publish' pk=post.pk %}">Publicar</a>
 		{% endif %}
         
         {% if user.is_authenticated %}
-     		<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
-     		<a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}" title="Remover"><span class="glyphicon glyphicon-remove"></span></a>
+     		<a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
+     		<a class="btn btn-danger" href="{% url 'post_remove' pk=post.pk %}" title="Remover"><span class="glyphicon glyphicon-remove"></span></a>
 		{% endif %}
         
-        <h1>{{ post.title }}</h1>
+        <br>
+
+        <div class="w3-card-4">
+            
+
+            <header class="w3-container w3-light-grey">
+                <h1>{{ post.title }}</h1>
+            </header>
+            <div class="w3-container">
+                <br>
+                <p>{{ post.text|linebreaksbr }}</p>
+                <br>
+            </div>
         
-        <p>{{ post.text|linebreaksbr }}</p>
-    
+            
+        </div>
+
     </div>
     
     <hr>
     
-    <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Adicionar comentário!</a>
-    
+    <a class="btn btn-primary" href="{% url 'add_comment_to_post' pk=post.pk %}">Adicionar comentário!</a>
+    <br>
     {% for comment in post.comments.all %}
         {% if user.is_authenticated or comment.approved_comment %}
+        <br><br>
         <div class="comment">
             <div class="date">
                 {{ comment.created_date }}
                 {% if not comment.approved_comment %}
-                    <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}" title="Não aprovar."><span class="glyphicon glyphicon-remove"></span></a>
-                    <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}" title="Aprovar comentário"><span class="glyphicon glyphicon-ok"></span></a>
+                    <a class="btn btn-danger btn-sm" href="{% url 'comment_remove' pk=comment.pk %}" title="Não aprovar."><span class="glyphicon glyphicon-remove"></span></a>
+                    <a class="btn btn-primary btn-sm" href="{% url 'comment_approve' pk=comment.pk %}" title="Aprovar comentário"><span class="glyphicon glyphicon-ok"></span></a>
                 {% endif %}
             </div>
-            <strong>{{ comment.author }}</strong>
-            <p>{{ comment.text|linebreaks }}</p>
+            
+            <div class="w3-card-4">
+                <header class="w3-container w3-light-grey">
+                    <H2>{{ comment.author }}</H2>
+
+                </header>
+                <div class="w3-container">
+                    <br>
+                    <p>{{ comment.text|linebreaks }}</p>
+                    <br>
+                </div>
+                
+
+            </div>
+
+            
         </div>
         {% endif %}
-    {% empty %}
-        <p>Ainda não há comentários :(</p>
+        {% empty %}
+            <p>Não há comentários no momento!</p>
     {% endfor %}
 
 {% endblock %}

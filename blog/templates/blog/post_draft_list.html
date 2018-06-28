@@ -3,18 +3,24 @@
 {% block content %}
     {% for post in posts %}
     <h1>Rascunhos</h1>
-        <div class="well well-sm">
+        <div class="w3-card-4">
             
-            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <header class="w3-container w3-light-grey">
+                <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            </header>
+            
 
-            
-            <div class="date">
-            <small>
+            <div class="w3-container">
+                <br>
                 {{ post.created_date }}
-            </small>
+
+                <hr>
+
+                <p>{{ post.text|truncatechars:200 }}</p>
+                <br>
             </div>
    
-            <p>{{ post.text|truncatechars:200 }}</p>
+            
         </div>
     {% endfor %}
 {% endblock %}
