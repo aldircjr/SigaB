@@ -59,9 +59,7 @@ class Nota(models.Model):
     id = models.AutoField(primary_key=True)
     aluno = models.ForeignKey(Aluno)
     materia = models.ForeignKey(Materia)
-    valorNota = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(10)])
-    observacao = models.TextField(max_length=100, default='')
-	
+    valorNota = models.FloatField()
     
     def __str__(self):
         return self.aluno.nome + ' - ' + self.materia.nome + ' - Nota: ' + str(self.valorNota)

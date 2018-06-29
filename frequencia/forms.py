@@ -20,13 +20,6 @@ class FrequenciaForm(forms.ModelForm):
         model = Frequencia
         fields = ('presente','data',)
         
-        #widgets ={
-        #    'presente': forms.CheckboxSelectMultiple(
-        #        attrs={'class': 'presente',
-        #        }),
-        #    }
-        
-        
         
 class NotaForm(forms.ModelForm):
 
@@ -36,7 +29,7 @@ class NotaForm(forms.ModelForm):
 
     class Meta:
         model = Nota
-        fields = ('valorNota', 'observacao',)
+        fields = ('valorNota',)
 
 
 class MateriaForm(forms.ModelForm):
@@ -45,7 +38,7 @@ class MateriaForm(forms.ModelForm):
         super(MateriaForm, self).__init__(*args, **kwargs)
         self.fields['nome'].widget.attrs['class'] = 'form-control'
         self.fields['professor_responsavel'].widget.attrs['class'] = 'form-control'
-        self.fields['alunos'].widget.attrs['class'] = 'form-control'
+        self.fields['alunos'].widget.attrs['class'] = 'form-control'    
 
     class Meta:
         model = Materia
@@ -54,9 +47,7 @@ class MateriaForm(forms.ModelForm):
 
 
 class AlunoForm(forms.ModelForm):
-
-
-
+    
     def __init__(self, *args, **kwargs):
         super(AlunoForm, self).__init__(*args, **kwargs)
         self.fields['nome'].widget.attrs['class'] = 'form-control'
@@ -64,6 +55,4 @@ class AlunoForm(forms.ModelForm):
 
     class Meta:
         model = Aluno
-
-                
         fields = ('nome', 'cidade')

@@ -26,8 +26,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Controle <span class="caret"></span></a>
 
             <ul class="dropdown-menu" role="menu">
-                <li><a href="{% url 'listaMateria' %}">Notas</a></li>
-                <li><a href="{% url 'listaralunos' %}">Listar Alunos</a></li>
+                <li><a href="{% url 'listaralunos' %}">Inserir Notas</a></li>
                 <li><a href="{% url 'novoaluno' %}">Cadastrar aluno</a></li>
                 <li><a href="{% url 'novamateria' %}">Cadastrar turma</a></li>
                 
@@ -94,4 +93,7 @@
       </div>
 
    </body>
+
+   {% block js%}
+   {% endblock%}
 </html>

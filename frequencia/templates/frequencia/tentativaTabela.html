@@ -1,0 +1,54 @@
+{% extends 'frequencia/base.html'%}
+
+{% block content%}
+
+    <div class="list-group">
+    {% for materia in materias %} 
+    	<h2>{{materia.nome}}</h2>
+  	<table class="table">
+      <tr>
+        <th>Aluno</th>
+        <th>Nota 1</th>
+        <th>Nota 2</th>
+        <th>Nota 3</th>
+        <th>Nota 4</th>
+      </tr>
+    	{% for aluno in materia.alunos.all %} 
+  			<tr>
+
+        <td>{{aluno.nome}}</td>
+        {% for nota in notas %} 
+          {%if aluno == nota.aluno and nota.materia == materia%}
+
+            <td>{{nota.valorNota}}</td>
+
+          {%endif%}
+        {% endfor %}  
+
+              
+      <div id="{{materia.id}}_{{aluno.id}}">
+                <td><button type="button" class="btn btn-success btn-circle btn-lg"><i class="glyphicon glyphicon-plus "></i></button></td>
+                <input class="input" type="number" name="nota"/>
+                <input class ="materia"type="hidden" data-materia="{{materia.id}}">
+               <input class = "aluno" type="hidden" data-aluno="{{aluno.id}}">
+               
+              </div>
+
+    	{% endfor %}
+		<br>
+
+    {% endfor %}
+
+</table>
+     <input type="hidden" id="urlInserirNota" data-url="{% url 'inserirNota' pkMateria=0 pkAluno=0 nota=0%}" />
+    
+    </div>  
+
+{%endblock%}
+
+{% load staticfiles %}
+
+{% block js %}
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
